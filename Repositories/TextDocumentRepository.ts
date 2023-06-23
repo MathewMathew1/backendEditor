@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 import ITextDocumentRepository from "../InterfacesRepositories/ITextDocumentRepository";
 
 export default class TextDocumentRepository implements ITextDocumentRepository {
-    async injectDB(conn: typeof mongoose) {
+    async injectDB() {
         try{
           
         } catch (e) {
