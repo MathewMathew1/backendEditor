@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "main": "index.ts",
-    "module": "type",
     "scripts": {
         "start": "ts-node index.ts",
         "test": "mocha -r ts-node/register tests/**/*.test.ts"

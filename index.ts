@@ -17,6 +17,12 @@ import TextDocumentController from './Api/TextDocumentController';
 import TextDocumentRepository from './Repositories/TextDocumentRepository';
 import cors from "cors";
 
+try{
+  const google = import("googleapis")
+}catch(e){
+  console.log(e)
+}
+
 // Create an Express application
 const app = express();
 
