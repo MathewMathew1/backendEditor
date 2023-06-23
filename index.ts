@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-
+import { userRoutes } from './Api/route';
 import dotenv from "dotenv";
 import bodyParser from 'body-parser';
 import mongoose from "mongoose";
+import { DependenciesContainer } from './types/types';
 
 
 import cors from "cors";
