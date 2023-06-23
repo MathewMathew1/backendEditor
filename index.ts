@@ -1,4 +1,17 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import { userRoutes } from './Api/route';
+import dotenv from "dotenv";
+import bodyParser from 'body-parser';
+import mongoose from "mongoose";
+import { DependenciesContainer } from './types/types';
+import UserController from './Api/UserController';
+import MongooseAuthRepository from './Repositories/MongooseAuthRepository';
+import GoogleAuthRepository from './Repositories/GoogleAuthRepository';
+import TextDocumentController from './Api/TextDocumentController';
+import TextDocumentRepository from './Repositories/TextDocumentRepository';
+import cors from "cors";
 
 // Create an Express application
 const app = express();
