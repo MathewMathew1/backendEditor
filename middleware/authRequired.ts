@@ -2,7 +2,7 @@
 import { Response, NextFunction } from 'express';
 import jwt from "jsonwebtoken";
 import { IGetUserAuthInfoRequest } from '../types/types';
-import { container } from '../app';
+import { container } from '..';
 
 const authRequired = async (req: IGetUserAuthInfoRequest, res: Response, next: NextFunction) => {    
     try{
