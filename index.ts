@@ -19,9 +19,7 @@ import cors from "cors";
 
 const app = express()
 const PORT = process.env.PORT || 3000 
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`)
-})
+
 const userRepository = new MongooseAuthRepository()
 //const googleRepository = new GoogleAuthRepository()
 const textDocumentRepository = new TextDocumentRepository()
