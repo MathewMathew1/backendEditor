@@ -1,5 +1,5 @@
 
-import { google, } from 'googleapis';
+import { google } from 'googleapis';
 import { IGoogleAuthRepository } from '../InterfacesRepositories/IGoogleAuthRepository';
 const REDIRECT_URI = 'http://localhost:3000/api/v1/user/google/callback';
 
