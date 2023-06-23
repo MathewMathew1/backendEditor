@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import { DependenciesContainer } from './types/types';
 
+import TextDocumentController from './Api/TextDocumentController';
 
 import cors from "cors";
 
