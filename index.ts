@@ -9,6 +9,7 @@ import { DependenciesContainer } from './types/types';
 
 import UserController from './Api/UserController';
 
+import GoogleAuthRepository from './Repositories/GoogleAuthRepository';
 import TextDocumentController from './Api/TextDocumentController';
 
 import cors from "cors";
