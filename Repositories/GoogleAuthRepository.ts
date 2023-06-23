@@ -1,12 +1,14 @@
 
 import { google } from 'googleapis';
-import { IGoogleAuthRepository } from '../InterfacesRepositories/IGoogleAuthRepository';
+
+
+
 const REDIRECT_URI = 'http://localhost:3000/api/v1/user/google/callback';
 
 const SCOPES = ['https://www.googleapis.com/auth/userinfo.profile',
 'https://www.googleapis.com/auth/userinfo.email'];
 
-export default class GoogleAuthRepository implements IGoogleAuthRepository {
+export default class GoogleAuthRepository  {
   oAuth2Client: any
   constructor() {
     try{
