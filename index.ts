@@ -11,7 +11,7 @@ import UserController from './Api/UserController';
 import MongooseAuthRepository from './Repositories/MongooseAuthRepository';
 
 import TextDocumentController from './Api/TextDocumentController';
-
+import TextDocumentRepository from './Repositories/TextDocumentRepository';
 import cors from "cors";
 
 // Create an Express application
