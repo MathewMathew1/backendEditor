@@ -1,5 +1,5 @@
 {
-    "name": "google-docs-backend",
+    "name": "textEditor",
     "version": "0.0.0",
     "private": true,
     "main": "app.ts",

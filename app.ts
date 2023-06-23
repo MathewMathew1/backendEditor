@@ -1,4 +1,3 @@
-console.log("here")
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -15,6 +14,9 @@ import TextDocumentRepository from './Repositories/TextDocumentRepository';
 import cors from "cors";
 console.log("sa")
 const app = express()
+app.listen(PORT, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`)
+})
 const userRepository = new MongooseAuthRepository()
 const googleRepository = new GoogleAuthRepository()
 const textDocumentRepository = new TextDocumentRepository()
