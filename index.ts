@@ -1,3 +1,10 @@
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  // Handle the error or perform cleanup operations
+  process.exit(1);
+});
+
+
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
