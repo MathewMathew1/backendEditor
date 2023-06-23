@@ -14,6 +14,7 @@ import TextDocumentRepository from './Repositories/TextDocumentRepository';
 import cors from "cors";
 console.log("sa")
 const app = express()
+const PORT = process.env.PORT || 3000 
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`)
 })
@@ -33,7 +34,7 @@ try{
   dotenv.config()
   
   const env = process.env.NODE_ENV
-  const PORT = process.env.PORT || 3000 
+
   console.log({PORT})
   // view engine setup
   if(env!== 'production'){
