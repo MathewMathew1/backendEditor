@@ -31,9 +31,5 @@ app.get('/', (req: Request, res: Response) => {
 const port = process.env.PORT || 3000; 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
-  try{
-    const google = import("googleapis")
-  }catch(e){
-    console.log(e)
-  }
+ 
 });
