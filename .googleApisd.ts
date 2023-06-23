@@ -1,1 +1,1 @@
-declare module 'googleapis'
+declare module '*';
