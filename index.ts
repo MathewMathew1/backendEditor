@@ -57,12 +57,7 @@ app.use("/healthCheck", (_req, res) => res.status(200).json({healthy: "healthy"}
 //app.use("/api/v1/", userRoutes(userController, textDocumentController))
 app.use("*", (_req, res) => res.status(404).json({error: "Not found"}))
 
-try{
-  const google = import("googleapis")
-  console.log(google)
-}catch(e){
-  console.log(e)
-}
+
 mongoose.connect(process.env.MONGO_URI!,{connectTimeoutMS: 5000})
   .then(async client =>{
     
