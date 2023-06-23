@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import { DependenciesContainer } from './types/types';
-
+//import {google} from "googleapis";
 import UserController from './Api/UserController';
 import MongooseAuthRepository from './Repositories/MongooseAuthRepository';
 import GoogleAuthRepository from './Repositories/GoogleAuthRepository';
@@ -32,49 +32,53 @@ const textDocumentController = new TextDocumentController(textDocumentRepository
     textDocumentRepository: textDocumentRepository,
     googleRepository: googleRepository
 };*/
+
+dotenv.config()
+
+const env = process.env.NODE_ENV
+
+console.log({PORT})
+// view engine setup
+if(env!== 'production'){
+  app.use(cors({origin: ["http://localhost:8000","https://socket.io"], credentials: true}))
+}
+else{
+  app.use(cors({origin: ["https://socket.io", "https://oliphant.netlify.app"], credentials: true}))
+}
+
+app.use(logger('dev'));
+app.use(express.json())
+app.use(bodyParser.json({limit: "800mb"}))
+app.use(bodyParser.urlencoded({ limit: '800mb', extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use("/healthCheck", (_req, res) => res.status(200).json({healthy: "healthy"}))
+//app.use("/api/v1/", userRoutes(userController, textDocumentController))
+app.use("*", (_req, res) => res.status(404).json({error: "Not found"}))
+
 try{
-  dotenv.config()
-  
-  const env = process.env.NODE_ENV
-
-  console.log({PORT})
-  // view engine setup
-  if(env!== 'production'){
-    app.use(cors({origin: ["http://localhost:8000","https://socket.io"], credentials: true}))
-  }
-  else{
-    app.use(cors({origin: ["https://socket.io", "https://oliphant.netlify.app"], credentials: true}))
-  }
-
-  app.use(logger('dev'));
-  app.use(express.json())
-  app.use(bodyParser.json({limit: "800mb"}))
-  app.use(bodyParser.urlencoded({ limit: '800mb', extended: true }));
-  app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
-
-  app.use("/healthCheck", (_req, res) => res.status(200).json({healthy: "healthy"}))
-  //app.use("/api/v1/", userRoutes(userController, textDocumentController))
-  app.use("*", (_req, res) => res.status(404).json({error: "Not found"}))
-
-  mongoose.connect(process.env.MONGO_URI!,{connectTimeoutMS: 5000,})
-    .then(async client =>{
-      
-      app.listen(PORT, () => {
-          console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`)
-      })
-    }).catch((error) => {
-      console.error('Error connecting to MongoDB', error);
-    });
-
-  //app.use(logger(':method :url :status :response-time ms - :remote-addr'));
-  // error handler
-  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    // set locals, only providing error in development
-    
-  });
+  const google = import("googleapis")
+  console.log(google)
 }catch(e){
   console.log(e)
 }
+mongoose.connect(process.env.MONGO_URI!,{connectTimeoutMS: 5000})
+  .then(async client =>{
+    
+    app.listen(PORT, () => {
+        console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`)
+    })
+  }).catch((error) => {
+    console.error('Error connecting to MongoDB', error);
+  });
+
+//app.use(logger(':method :url :status :response-time ms - :remote-addr'));
+// error handler
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  // set locals, only providing error in development
+  
+});
+
 
 export default app;
