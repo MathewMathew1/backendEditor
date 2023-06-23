@@ -7,6 +7,8 @@ import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import { DependenciesContainer } from './types/types';
 
+import MongooseAuthRepository from './Repositories/MongooseAuthRepository';
+import GoogleAuthRepository from './Repositories/GoogleAuthRepository';
 import TextDocumentController from './Api/TextDocumentController';
 
 import cors from "cors";
