@@ -9,7 +9,7 @@ import { DependenciesContainer } from './types/types';
 
 import UserController from './Api/UserController';
 import MongooseAuthRepository from './Repositories/MongooseAuthRepository';
-
+import GoogleAuthRepository from './Repositories/GoogleAuthRepository';
 import TextDocumentController from './Api/TextDocumentController';
 import TextDocumentRepository from './Repositories/TextDocumentRepository';
 import cors from "cors";

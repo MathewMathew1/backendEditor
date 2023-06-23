@@ -9,11 +9,16 @@ const SCOPES = ['https://www.googleapis.com/auth/userinfo.profile',
 export default class GoogleAuthRepository implements IGoogleAuthRepository {
   oAuth2Client: any
   constructor() {
-    this.oAuth2Client = new google.auth.OAuth2({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      redirectUri: REDIRECT_URI,
-    });
+    try{
+      console.log(process.env.GOOGLE_CLIENT_ID)
+      this.oAuth2Client = new google.auth.OAuth2({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        redirectUri: REDIRECT_URI,
+      });}
+    catch(e){
+      console.log(e)
+    }
   }
     
   async getAuthUrl(): Promise<string> {
