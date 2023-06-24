@@ -52,9 +52,9 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
       let response = await fetch(userInfoEndpoint, {
         method: 'POST',
       });
-      response = await response.json();
-      console.log(response)
-      if (!response) {
+      const responseData = await response.json() as any
+
+      if (!responseData.error) {
         return response;
       } else {
         throw new Error('Failed to retrieve user profile');
