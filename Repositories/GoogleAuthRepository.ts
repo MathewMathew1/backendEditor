@@ -4,8 +4,9 @@ import fetch from "node-fetch";
 
 
 const SCOPES = [
-  'https://www.googleapis.com/auth/userinfo.profile', // get user info
-  'https://www.googleapis.com/auth/userinfo.email',   // get user email ID and if its verified or not
+  "https://www.googleapis.com/auth/userinfo.profile", // get user info
+  "https://www.googleapis.com/auth/userinfo.email",   // get user email ID and if its verified or not
+  "https://www.googleapis.com/auth/userinfo.email",
 ];
 
 export default class GoogleAuthRepository implements IGoogleAuthRepository {
