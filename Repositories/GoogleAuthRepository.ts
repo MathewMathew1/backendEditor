@@ -7,7 +7,7 @@ const SCOPES = ['profile', 'email'];
 
 export default class GoogleAuthRepository implements IGoogleAuthRepository {
   oAuth2Client
-  REDIRECT_URI = process.env.NODE_ENV !== 'production'? 'https://texteditor-production-eaf9.up.railway.app/api/v1/user/google/callback': ""
+  REDIRECT_URI = process.env.NODE_ENV !== 'production'? 'http://localhost:3000/api/v1/user/google/callback': 'https://texteditor-production-eaf9.up.railway.app/api/v1/user/google/callback'
 
   constructor() {
     
