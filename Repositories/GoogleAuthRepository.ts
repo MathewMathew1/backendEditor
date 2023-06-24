@@ -1,14 +1,16 @@
 import { AuthorizationCode } from 'simple-oauth2';
 import { IGoogleAuthRepository } from '../InterfacesRepositories/IGoogleAuthRepository';
+import fetch from "node-fetch";
 
-const REDIRECT_URI = 'http://localhost:3000/api/v1/user/google/callback';
 
 const SCOPES = ['profile', 'email'];
 
 export default class GoogleAuthRepository implements IGoogleAuthRepository {
-  oAuth2Client: any;
+  oAuth2Client
+  REDIRECT_URI = process.env.NODE_ENV !== 'production'? 'https://texteditor-production-eaf9.up.railway.app/api/v1/user/google/callback': ""
 
   constructor() {
+    
     this.oAuth2Client = new AuthorizationCode({
       client: {
         id: process.env.GOOGLE_CLIENT_ID!,
@@ -20,13 +22,13 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
         tokenPath: '/o/oauth2/token',
       },
     });
+    
   }
 
   async getAuthUrl(): Promise<string> {
     const authorizationUri = this.oAuth2Client.authorizeURL({
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: this.REDIRECT_URI,
       scope: SCOPES.join(' '),
-      access_type: 'offline',
     });
     return authorizationUri;
   }
@@ -34,22 +36,30 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
   async getAccessToken(code: string): Promise<any> {
     const tokenConfig = {
       code: code,
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: this.REDIRECT_URI,
     };
 
     const accessToken = await this.oAuth2Client.getToken(tokenConfig);
+
     return accessToken;
   }
 
   async getUserProfile(tokens: any): Promise<any> {
-    const userInfo = await this.oAuth2Client.request({
-      method: 'GET',
-      url: 'https://www.googleapis.com/oauth2/v3/userinfo',
-      headers: {
-        Authorization: `Bearer ${tokens.access_token}`,
-      },
-    });
+    const userInfoEndpoint = `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.token.access_token}`;
 
-    return userInfo.data;
+    try {
+      let response = await fetch(userInfoEndpoint, {
+        method: 'POST',
+      });
+      response = await response.json();
+
+      if (!response) {
+        return response;
+      } else {
+        throw new Error('Failed to retrieve user profile');
+      }
+    } catch (error) {
+      throw new Error('Failed to retrieve user profile');
+    }
   }
 }

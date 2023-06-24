@@ -54,7 +54,7 @@ export default class UserController {
         expireData.setTime(expireData.getTime() + (5 * 365 * 24 * 60 * 60 * 1000));
 
         // Convert the date to a UTC string format
-        let redirectPage = req.app?.get('env') !== 'production'? 'http://localhost:8000/': 'http://localhost:8000/'
+        let redirectPage = req.app?.get('env') !== 'production'? 'http://localhost:8000/': 'https://texteditorproject.netlify.app/'
         res.cookie('token', accessToken, { httpOnly: true, expires: expireData, sameSite: "none", secure: true})
         res.redirect(redirectPage);
       }
