@@ -53,7 +53,7 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
         method: 'POST',
       });
       response = await response.json();
-
+      console.log(response)
       if (!response) {
         return response;
       } else {
