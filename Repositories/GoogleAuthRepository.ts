@@ -49,19 +49,17 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
     console.log(tokens)
     const userInfoEndpoint = `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.token.access_token}`;
 
-    try {
+   
       let response = await fetch(userInfoEndpoint, {
         method: 'POST',
       });
-      const responseData = await response.json() as any
-
+      const responseData = await response.json() 
+      console.log(response)
       if (!responseData.error) {
         return response;
       } else {
         throw new Error('Failed to retrieve user profile');
       }
-    } catch (error) {
-      throw new Error('Failed to retrieve user profile');
-    }
+    
   }
 }
