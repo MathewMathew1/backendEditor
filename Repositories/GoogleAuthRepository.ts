@@ -30,6 +30,7 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
       redirect_uri: this.REDIRECT_URI,
       scope: SCOPES.join(' '),
     });
+    console.log(authorizationUri)
     return authorizationUri;
   }
 
