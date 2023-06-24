@@ -5,8 +5,7 @@ import fetch from "node-fetch";
 
 const SCOPES = [
   "https://www.googleapis.com/auth/userinfo.profile", // get user info
-  "https://www.googleapis.com/auth/userinfo.email",   // get user email ID and if its verified or not
-  "https://www.googleapis.com/auth/userinfo.email",
+  "https://www.googleapis.com/auth/userinfo.email"   // get user email ID and if its verified or not
 ];
 
 export default class GoogleAuthRepository implements IGoogleAuthRepository {
@@ -60,7 +59,7 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
       const responseData = await response.json() 
       console.log(responseData)
       if (!responseData.error) {
-        return response;
+        return responseData;
       } else {
         throw new Error('Failed to retrieve user profile');
       }
