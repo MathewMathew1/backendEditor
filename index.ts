@@ -36,7 +36,7 @@ if(env!== 'production'){
   app.use(cors({origin: ["http://localhost:8000","https://socket.io"], credentials: true}))
 }
 else{
-  app.use(cors({origin: ["https://socket.io", "https://texteditorproject.netlify.app/"], credentials: true}))
+  app.use(cors({origin: ["https://socket.io", "https://texteditorproject.netlify.app"], credentials: true}))
 }
 
 app.use(logger('dev'));
