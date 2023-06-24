@@ -3,7 +3,10 @@ import { IGoogleAuthRepository } from '../InterfacesRepositories/IGoogleAuthRepo
 import fetch from "node-fetch";
 
 
-const SCOPES = ['profile', 'email'];
+const SCOPES = [
+  'https://www.googleapis.com/auth/userinfo.profile', // get user info
+  'https://www.googleapis.com/auth/userinfo.email',   // get user email ID and if its verified or not
+];
 
 export default class GoogleAuthRepository implements IGoogleAuthRepository {
   oAuth2Client
