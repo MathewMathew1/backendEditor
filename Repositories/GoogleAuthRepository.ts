@@ -46,6 +46,7 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
   }
 
   async getUserProfile(tokens: any): Promise<any> {
+    console.log(tokens)
     const userInfoEndpoint = `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.token.access_token}`;
 
     try {
