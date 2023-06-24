@@ -9,29 +9,29 @@ import dotenv from "dotenv";
 import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import { DependenciesContainer } from './types/types';
-import {google} from "googleapis";
 import UserController from './Api/UserController';
 import MongooseAuthRepository from './Repositories/MongooseAuthRepository';
-//import GoogleAuthRepository from './Repositories/GoogleAuthRepository';
+import GoogleAuthRepository from './Repositories/GoogleAuthRepository';
 import TextDocumentController from './Api/TextDocumentController';
 import TextDocumentRepository from './Repositories/TextDocumentRepository';
 import cors from "cors";
+
 
 const app = express()
 const PORT = process.env.PORT || 3000 
 
 const userRepository = new MongooseAuthRepository()
-//const googleRepository = new GoogleAuthRepository()
+const googleRepository = new GoogleAuthRepository()
 const textDocumentRepository = new TextDocumentRepository()
 
-//const userController = new UserController(userRepository, googleRepository);
+const userController = new UserController(userRepository, googleRepository);
 const textDocumentController = new TextDocumentController(textDocumentRepository);
 
-/*export const container: DependenciesContainer = {
+export const container: DependenciesContainer = {
     userRepository: userRepository,
     textDocumentRepository: textDocumentRepository,
     googleRepository: googleRepository
-};*/
+}
 
 dotenv.config()
 
@@ -54,7 +54,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/healthCheck", (_req, res) => res.status(200).json({healthy: "healthy"}))
-//app.use("/api/v1/", userRoutes(userController, textDocumentController))
+app.use("/api/v1/", userRoutes(userController, textDocumentController))
 app.use("*", (_req, res) => res.status(404).json({error: "Not found"}))
 
 

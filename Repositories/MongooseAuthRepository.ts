@@ -12,7 +12,7 @@ export default class MongooseAuthRepository implements IAuthRepository {
     async createGoogleUser(passedData: any) {
         try {
             const user = new User({
-                google: {id: passedData.id},
+                google: {id: passedData.user_id},
                 email: passedData.email,
             });
             await user.save()

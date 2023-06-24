@@ -39,7 +39,7 @@ export default class UserController {
        
         const profiles = await this.googleRepository.getUserProfile(tokens)
 
-        const googleUser = await this.userRepository.getUserByGoogleId(profiles.id)
+        const googleUser = await this.userRepository.getUserByGoogleId(profiles.user_id)
 
         let accessToken
         if(!googleUser){
