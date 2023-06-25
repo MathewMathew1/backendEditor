@@ -31,7 +31,7 @@ export default class GoogleAuthRepository implements IGoogleAuthRepository {
   async getAuthUrl(): Promise<string> {
     const authorizationUri = this.oAuth2Client.authorizeURL({
       redirect_uri: this.REDIRECT_URI,
-      scope: SCOPES,
+      scope: SCOPES
     });
     console.log(authorizationUri)
     return authorizationUri;
