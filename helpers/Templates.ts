@@ -1,6 +1,6 @@
 const templates: {template: string, templateName: string}[] = []
 
-const letterTemplate = '<span class="page" style="display: grid; grid-template-columns: 150mm 60mm; padding-top: 20px; height: 297mm; box-sizing: border-box; overflow: hidden">'
+const resumeTemplate = '<span class="page" style="display: grid; grid-template-columns: 150mm 60mm; padding-top: 20px; height: 297mm; box-sizing: border-box; overflow: hidden">'
     +'<span class="column" style="height: fit-content">'
     +  '<p style="margin-left:20mm;"><span style="font-weight: bold;  font-size: 36px;">Your Name<br/></span><span style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</span></p>'
     +  '<p style="margin-left:20mm; padding-top: 20px"><span style="color:#2079c7; font-size:14px">EXPERIENCE</span></p>'
@@ -32,10 +32,17 @@ const letterTemplate = '<span class="page" style="display: grid; grid-template-c
     +'</span>'
     +'</span>'
 
+const blank = '<span class="page" style="display: grid; grid-template-columns: 210mm; padding-top: 20px; height: 297mm; box-sizing: border-box; overflow: hidden">'
+    +'<span class="column" style="height: fit-content">'
+    +  '<p style="margin-left:20mm;"><span ></span></p>'
+    +'</span>'
+    
+    +'</span>'    
 
-templates.push({template: letterTemplate, templateName: "letter"})
-templates.push({template: letterTemplate, templateName: "letter"})
-templates.push({template: letterTemplate, templateName: "letter"})
-templates.push({template: letterTemplate, templateName: "letter"})
+templates.push({template: blank, templateName: "Blank"})
+templates.push({template: resumeTemplate, templateName: "Resume"})
+
+templates.push({template: resumeTemplate, templateName: "letter"})
+templates.push({template: resumeTemplate, templateName: "letter"})
 
 export default templates

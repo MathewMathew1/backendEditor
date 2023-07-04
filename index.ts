@@ -30,13 +30,11 @@ export const container: DependenciesContainer = {
 const env = process.env.NODE_ENV
 const app = express()
 
-console.log(env)
 // view engine setup
 if(env!== 'production'){
   app.use(cors({origin: ["http://localhost:8000","https://socket.io"], credentials: true}))
 }
 else{
-  console.log("here")
   app.use(cors({origin: ["https://socket.io", "https://texteditorproject.netlify.app"], credentials: true}))
 }
 
