@@ -34,7 +34,7 @@ const resumeTemplate = '<span class="page" style="display: grid; grid-template-c
 
 const blank = '<span class="page" style="display: grid; grid-template-columns: 210mm; padding-top: 20px; height: 297mm; box-sizing: border-box; overflow: hidden">'
     +'<span class="column" style="height: fit-content">'
-    +  '<p style="margin-left:20mm;"><span ></span></p>'
+    +  '<p style="margin-left:20mm;"><span >New Document</span></p>'
     +'</span>'
     
     +'</span>'    
