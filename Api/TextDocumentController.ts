@@ -45,7 +45,7 @@ export default class TextDocumentController {
             let textDocument = await this.textDocumentRepository.getTextDocument(textDocumentId)
           
             if(textDocument===null || textDocument.userId!== user?._id.toString()) return res.status(404).json({error: "Text document not found" })
-
+            console.log(textDocument)
             res.status(201).json({status: "success", textDocument})
         }
         catch (e) {
@@ -78,7 +78,7 @@ export default class TextDocumentController {
             const user = req.user       
             
             let textDocuments = await this.textDocumentRepository.getTextDocuments(user!._id)
-        
+            
             res.status(201).json({status: "success", textDocuments})
         }
         catch (e) {
@@ -120,13 +120,13 @@ export default class TextDocumentController {
             }
             
             const text: string = req.body.text
-
+            console.log(text)
             const textDocumentId = req.params.textDocumentId          
             const user = req.user       
             if(typeof textDocumentId!=="string") return res.status(400).json({ error: "Missing none optional query argument textDocumentId" })        
             
             let updatedTextDocument = await this.textDocumentRepository.updateTextOfTextDocument(user!._id, textDocumentId, text)
-         
+            
             if(updatedTextDocument===null) return res.status(404).json({error: "Text document not found" })
 
             res.status(201).json({status: "success", updatedTextDocument})
